@@ -43,7 +43,7 @@ spec:
       secretName: {{ $fullName }}-tls
   {{- end }}
   rules:
-    {{- if $isDelegatedDomain }}
+    {{- if and $isDelegatedDomain (ne $delegatedDomain .Values.server_name) }}
     - host: {{ .Values.server_name }}
       http:
         paths:
